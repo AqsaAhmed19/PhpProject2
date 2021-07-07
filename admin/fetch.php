@@ -29,7 +29,7 @@
 		$host="localhost";
 		$hostuser="root";
 		$hostpassword="";
-		$dbname="test";
+		$dbname="php_shopping_cart";
 		$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
 		$result=mysqli_query($con,"select *from students");
 		if($result->num_rows>0){

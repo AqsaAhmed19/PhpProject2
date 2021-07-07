@@ -4,7 +4,7 @@
 		$host="localhost";
 		$hostuser="root";
 		$hostpassword="";
-		$dbname="test";
+		$dbname="php_shopping_cart";
 		$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
 	    $Id=$_GET["editid"];
 	$result=mysqli_query($con,"select * from students where Id=$Id");
