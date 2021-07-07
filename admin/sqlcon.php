@@ -1,9 +1,6 @@
+<?php include('config.php');?>
 <?php
-$host="localhost";
-$hostuser="root";
-$hostpassword="";
-$dbname="php_shopping_cart";
-$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+
 if(isset($_POST["register"])){
 	$Name=$_POST["name"];
 	$ext=explode(".",$_FILES["userimage"]["name"]);
@@ -16,35 +13,57 @@ if(isset($_POST["register"])){
 	//file handling
 	
 	$query="INSERT INTO `students`( `Name`,`Files`, `Phone`, `City`, `Gender`) VALUES ('$Name','$filename', '$Phone','$City','$Gender')";
-	$result=mysqli_query($con,$query);
+	$result=mysqli_query($conn,$query);
 	if($result)
 	{
 		//echo 'Thank You';
+		$_SESSION['status'] ="Registered Successfull";
+		$_SESSION['status_code'] = "success";
 		echo '<script>window.location.href="fetch.php"</script>';
 	}
 	else{
-		echo"<center>GET SOME ERROR =></center>".mysqli_error($con);
+		$_SESSION['status'] ="Data Not Registered";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
 	}
 
 }
-elseif(isset($_GET["delid"])){
+if(isset($_GET["delid"])){
 	$Id=$_GET["delid"];
-	mysqli_query($con,"delete from students where Id=$Id");
-	header("location:fetch.php");
+	$result = mysqli_query($conn,"delete from students where Id=$Id");
+	if($result){
+		$_SESSION['status'] ="Deleted Successfull";
+		$_SESSION['status_code'] = "success";
+		header("location:fetch.php");
+	}
+	else{
+		$_SESSION['status'] ="Data Not Deleted ";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
+	}
+	
 }
 
-elseif(isset($_POST["edituser"])){
+if(isset($_POST["edituser"])){
 	$Id=$_POST["Id"];
 	$Name=$_POST["name"];
 	$Phone=$_POST["phone"];
 	$City=$_POST["city"];
 	$Gender=$_POST["gender"];
-	mysqli_query($con,"update students set Name='$Name',Phone='$Phone',City='$City',Gender='$Gender' where Id=$Id");
-	header("location:fetch.php");
-}
+	$result = mysqli_query($conn,"update students set Name='$Name',Phone='$Phone',City='$City',Gender='$Gender' where Id=$Id");
+	if($result)
+	{
+		$_SESSION['status'] ="Updated Successfull";
+		$_SESSION['status_code'] = "success";
+		header("location:fetch.php");
+	}
+	else{
+		$_SESSION['status'] ="Not Updated";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
+	}
+	
 
-else{
-	header("location:fetch.php");
 }
 
 ?>

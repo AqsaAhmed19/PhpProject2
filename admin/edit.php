@@ -1,3 +1,4 @@
+<?php include('config.php');?>
 <?php include('header.php');?>
 
 <?php
@@ -5,9 +6,9 @@
 		$hostuser="root";
 		$hostpassword="";
 		$dbname="php_shopping_cart";
-		$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-	    $Id=$_GET["editid"];
-	$result=mysqli_query($con,"select * from students where Id=$Id");
+		$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+	  $Id=$_GET["editid"];
+	  $result=mysqli_query($conn,"select * from students where Id=$Id");
 	if($result->num_rows>0)
 	{
 		$row=mysqli_fetch_assoc($result);
@@ -79,7 +80,7 @@
 			<option disabled>-- Select City --</option>
     <?php
         //include "fetch.php";  // Using database connection file here
-        $cities=mysqli_query($con,"select * from cities");  // Use select query here 
+        $cities=mysqli_query($conn,"select * from cities");  // Use select query here 
           while($City = mysqli_fetch_array($cities))
         {
 			 echo "<option value='". $City['Name'] ."'>" .$City['Name'] ."</option>";  // displaying data in option menu	

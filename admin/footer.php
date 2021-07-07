@@ -22,6 +22,24 @@
 <script src="assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
+<!--Sweet alert---->
+<script src="assets/js/sweetalert.js"></script>
+<?php 
+if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+{
+   ?>
+   <script>
+      swal({
+      title: "<?php echo $_SESSION['status'];?>",
+      icon: "<?php echo $_SESSION['status_code'];?>",
+      button: "Ok Done!",
+});
+</script>
+   <?php
+   unset($_SESSION['status']);
+}
 
+
+?>
 
 </body></html>

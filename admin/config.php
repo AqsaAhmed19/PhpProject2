@@ -1,8 +1,9 @@
 <?php
+session_start();
 $hostname="localhost";
 $hostusername="root";
 $hostpassword="";
-$dbname="test";
+$dbname="php_shopping_cart";
 $conn=mysqli_connect($hostname,$hostusername,$hostpassword,$dbname);
 if(!$conn)
 {

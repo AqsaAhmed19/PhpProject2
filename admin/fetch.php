@@ -1,3 +1,4 @@
+<?php include('config.php');?>
 <?php include('header.php');?>
 <br>
 <section class="content">
@@ -19,9 +20,9 @@
                       <th>Name</th>
                       <th>Files</th>
                       <th>Phone</th>
-					  <th>City</th>
-					  <th>Gender</th>
-					  <th>Actions</th>
+					             <th>City</th>
+					             <th>Gender</th>
+					             <th>Actions</th>
                     </tr>
                   </thead>
 					
@@ -30,8 +31,8 @@
 		$hostuser="root";
 		$hostpassword="";
 		$dbname="php_shopping_cart";
-		$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-		$result=mysqli_query($con,"select *from students");
+		$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+		$result=mysqli_query($conn,"select *from students");
 		if($result->num_rows>0){
 			while($row=mysqli_fetch_assoc($result))
 			{
@@ -97,9 +98,9 @@
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
-$dbname="test";
-$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-$cities=mysqli_query($con,"select * from cities");
+$dbname="php_shopping_cart";
+$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+$cities=mysqli_query($conn,"select * from cities");
 ?>
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
