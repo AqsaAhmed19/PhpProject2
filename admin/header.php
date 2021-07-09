@@ -105,7 +105,13 @@
               <li class="nav-item">
                 <a href="index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registration Form</p>
+                  <p>Add Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="category.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Category</p>
                 </a>
               </li>
               
@@ -115,7 +121,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                User Tables
+                Details
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -123,13 +129,13 @@
               <li class="nav-item">
                 <a href="fetch.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>User Details</p>
+                  <p>All Product</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="index.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add new User</p>
+                  <p>All Category</p>
                 </a>
               </li>
               
