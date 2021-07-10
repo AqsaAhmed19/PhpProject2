@@ -5,8 +5,8 @@ $host ="localhost";
 $hostuser="root";
 $hostpassword="";
 $dbname="php_shopping_cart";
-$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-$cities=mysqli_query($con,"select * from cities");
+$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+
 ?>
 
     <!-- Content Header (Page header) -->
@@ -47,11 +47,11 @@ $cities=mysqli_query($con,"select * from cities");
               <form action="sqlcon.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="name"> Category Name :</label>
-                    <input type="text" name="name" class="form-control"  placeholder="Enter Category Name">
+                    <label for="catname"> Category Name :</label>
+                    <input type="text" name="catname" class="form-control"  placeholder="Enter Category Name">
                   </div>
 					
-                 <center> <button type="submit" class="btn btn-info " name="register">Add Category</button></center>
+                 <center> <button type="Add Category" class="btn btn-info " name="addcategory">Add Category</button></center>
                
               </form>
             </div>
