@@ -58,7 +58,7 @@
                     <label for="catname">Category Name</label>
                     <input type="text" name="catname" class="form-control"  placeholder="Enter Category" value="<?=$row['cat_name']?>">
                   </div>
-					 <center>     <button type="submit" class="btn btn-info" name="editcat">Edit</button></center>
+					 <center>  <button type="submit" class="btn btn-info" name="editcat">Edit</button></center>
                
               </form>
             </div>

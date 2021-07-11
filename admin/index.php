@@ -4,9 +4,9 @@
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
-$dbname="test";
-$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-$cities=mysqli_query($con,"select * from cities");
+$dbname="php_shopping_cart";
+$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+$cities=mysqli_query($conn,"select * from tbl_category");
 ?>
 
     <!-- Content Header (Page header) -->
@@ -14,12 +14,12 @@ $cities=mysqli_query($con,"select * from cities");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Registration Form</h1>
+            <h1>Add Product</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Registration form</li>
+              <li class="breadcrumb-item active">Add Product</li>
             </ol>
           </div>
         </div>
@@ -40,18 +40,18 @@ $cities=mysqli_query($con,"select * from cities");
             <!-- general form elements -->
             <div class="card card-info ">
               <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-clipboard-list"></i>       Register Form</h3>
+              <h3 class="card-title"><i class="fas fa-clipboard-list"></i> Add Product</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form action="sqlcon.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="name">Name :</label>
-                    <input type="text" name="name" class="form-control"  placeholder="Enter Your Name">
+                    <label for="name"> Product Name :</label>
+                    <input type="text" name="name" class="form-control"  placeholder="Enter Product Name">
                   </div>
 					<div class="form-group">
-                    <label for="userimage">File input :</label>
+                    <label for="userimage">Product Image:</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="userimage" multiple >
@@ -61,32 +61,30 @@ $cities=mysqli_query($con,"select * from cities");
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="phone">Phone :</label>
-                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Number" name="phone">
+                    <label for="price">Product Price</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="price">
+                  </div>
+                  <div class="form-group">
+                    <label for="qty">Product Qty</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Quantity" name="qty">
                   </div>
 					 <div class="form-group">
-                    <label for="city">City :</label>
-                    <select name="city" id="" class="form-control">
+                    <label for="category">Product Category :</label>
+                    <select name="category" id="" class="form-control">
 			<?php
-				while($cityrow=mysqli_fetch_assoc($cities))
+				while($categoryrow=mysqli_fetch_assoc($tbl_category))
 				{
 					?>
-				<option  selected='selected' value="<?=$cityrow['Name']?>"><?=$cityrow["Name"]?></option>
+				<option  selected='selected' value="<?=$categoryrow['cat_name']?>"><?=$categoryrow["cat_name"]?></option>
 				<?php
 				}
 			?>
 		</select>
                   </div>
-                  
-                  <div class="form-group">
-                    <label for="gender">Gender :</label><br>
-		<input type="radio" name="gender" value="male">male<br>
-		<input type="radio" name="gender" value="female" >female
-                  </div>
-                </div>
+          
                 <!-- /.card-body -->
 
-                 <center> <button type="submit" class="btn btn-info " name="register">Add Data</button></center>
+                 <center> <button type="submit" class="btn btn-info " name="register">Add product</button></center>
                
               </form>
             </div>

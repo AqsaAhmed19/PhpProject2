@@ -1,6 +1,61 @@
 <?php include('config.php');?>
 <?php
 
+//////category data/////
+if(isset($_POST["addcategory"])){
+	$cat_name=$_POST["catname"];
+	$query="INSERT INTO `tbl_category`(`cat_name`) VALUES ('$cat_name')";
+	$result=mysqli_query($conn,$query);
+	if($result)
+	{
+		//echo 'Thank You';
+		$_SESSION['status'] ="Registered Successfull";
+		$_SESSION['status_code'] = "success";
+		echo '<script>window.location.href="catfetch.php"</script>';
+	}
+	else{
+		$_SESSION['status'] ="Data Not Registered";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
+	}
+
+}
+
+if(isset($_GET["catdelid"])){
+	$cat_id=$_GET["catdelid"];
+	$result = mysqli_query($conn,"delete from tbl_category where cat_id=$cat_id");
+	if($result){
+		$_SESSION['status'] ="Deleted Successfull";
+		$_SESSION['status_code'] = "success";
+		header("location:catfetch.php");
+	}
+	else{
+		$_SESSION['status'] ="Data Not Deleted ";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
+	}
+	
+}
+
+if(isset($_POST["editcat"])){
+	$cat_id =$_POST["cat_id"];
+	$cat_name=$_POST["catname"];
+	$result = mysqli_query($conn,"update tbl_category set cat_name='$cat_name' where cat_id=$cat_id");
+	if($result)
+	{
+		$_SESSION['status'] ="Updated Successfull";
+		$_SESSION['status_code'] = "success";
+		header("location:catfetch.php");
+	}
+	else{
+		$_SESSION['status'] ="Not Updated";
+		$_SESSION['status_code'] = "error";
+		echo"<center>GET SOME ERROR =></center>".mysqli_error($conn);
+	}
+	
+
+}
+//--------------------------------//////////
 if(isset($_POST["register"])){
 	$Name=$_POST["name"];
 	$ext=explode(".",$_FILES["userimage"]["name"]);
