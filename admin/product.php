@@ -1,12 +1,7 @@
 <?php include('config.php');?>
 <?php include('header.php');?>
 <?php
-$host ="localhost";
-$hostuser="root";
-$hostpassword="";
-$dbname="shopping_cart";
-$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-$cities=mysqli_query($conn,"select * from tbl_category");
+$categories=mysqli_query($conn,"select * from tbl_category");
 ?>
 
     <!-- Content Header (Page header) -->
@@ -55,7 +50,7 @@ $cities=mysqli_query($conn,"select * from tbl_category");
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="userimage" multiple >
-                        <label class="custom-file-label" for="userimage">Choose file</label>
+                        <label class="custom-file-label" for="userimage">Choose Image</label>
                       </div>
                       
                     </div>
@@ -65,14 +60,14 @@ $cities=mysqli_query($conn,"select * from tbl_category");
                     <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="price">
                   </div>
                   <div class="form-group">
-                    <label for="qty">Product Qty</label>
+                    <label for="qty">Product Quantity</label>
                     <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Quantity" name="qty">
                   </div>
 					 <div class="form-group">
                     <label for="category">Product Category :</label>
                     <select name="category" id="" class="form-control">
 			<?php
-				while($categoryrow=mysqli_fetch_assoc($tbl_category))
+				while($categoryrow=mysqli_fetch_assoc($categories))
 				{
 					?>
 				<option  selected='selected' value="<?=$categoryrow['cat_name']?>"><?=$categoryrow["cat_name"]?></option>
@@ -84,7 +79,7 @@ $cities=mysqli_query($conn,"select * from tbl_category");
           
                 <!-- /.card-body -->
 
-                 <center> <button type="submit" class="btn btn-info " name="register">Add product</button></center>
+                 <center> <button type="submit" class="btn btn-info " name="Addproduct">Add product</button></center>
                
               </form>
             </div>

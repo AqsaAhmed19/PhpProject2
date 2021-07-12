@@ -7,46 +7,47 @@
           <div class="col-md-12">
             <div class="card card-secondary">
               <div class="card-header ">
-                <h1 class="card-title "><strong>User Data </strong></h1>
+                <h1 class="card-title "><strong>Product Data </strong></h1>
 				<button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#modal-default">Add Data</a></button>
               </div>
 				 
               <!-- /.card-header -->
               <div class="card-body card-danger">
-                <table class="table table-bordered table-hover" border="1">
-                  <thead>
+                <div class="table-responsive ">
+                <table class="table table-bordered table-hover " border="1">
+                  <thead> 
                     <tr class="card-dark">
                       <th>Id</th>
-                      <th>Name</th>
-                      <th>Files</th>
-                      <th>Phone</th>
-					             <th>City</th>
-					             <th>Gender</th>
+                      <th>Product Name</th>
+                      <th>Product Image</th>
+                      <th>Product Price</th>
+					             <th>Product Quantity</th>
+					             <th>Product Category</th>
 					             <th>Actions</th>
                     </tr>
                   </thead>
 					
 					<?php
-		$host="localhost";
-		$hostuser="root";
-		$hostpassword="";
-		$dbname="shopping_cart";
-		$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-		$result=mysqli_query($conn,"select *from students");
+          $host="localhost";
+          $hostuser="root";
+          $hostpassword="";
+          $dbname="php_shopping_cart";
+          $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+		$result=mysqli_query($conn,"select *from tbl_product");
 		if($result->num_rows>0){
 			while($row=mysqli_fetch_assoc($result))
 			{
 				?>
 		     <tr>
-		        <td><?php echo $row["Id"]?></td>
-				<td><?php echo $row["Name"]?></td>
-				<td width="100px"><img src="<?=$row['Files']?>"  alt="" width="50%"></td>
-                <td><?php echo $row["Phone"]?></td>
-                <td><?php echo $row["City"]?></td>
-				<td><?php echo $row["Gender"]?></td>
-				 <td><a href="sqlcon.php?delid=<?=$row['Id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+		        <td><?php echo $row["product_id"]?></td>
+				<td><?php echo $row["product_name"]?></td>
+				<td width="150px"><img src="<?=$row['product_image']?>"  alt="" width="70%"></td>
+                <td><?php echo $row["product_price"]?></td>
+                <td><?php echo $row["product_qty"]?></td>
+				<td><?php echo $row["product_category"]?></td>
+				 <td><a href="sqlcon.php?delid=<?=$row['product_id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 				 
-				 <a href="edit.php?editid=<?=$row['Id']?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+				 <a href="edit.php?editid=<?=$row['product_id']?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 				 </td>
 				 
 				  </tr>
@@ -61,6 +62,7 @@
 		?>	
                   
                 </table>
+                </div>
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
@@ -94,19 +96,22 @@
       </div><!-- /.container-fluid -->
     </section>
 <?php include('footer.php');?>
+
+
+
 <?php
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
 $dbname="php_shopping_cart";
 $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-$cities=mysqli_query($conn,"select * from cities");
+$categories=mysqli_query($conn,"select * from tbl_category");
 ?>
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"> Add Data</h4>
+        <h4 class="modal-title"> Add Product</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -114,11 +119,11 @@ $cities=mysqli_query($conn,"select * from cities");
                     <form action="sqlcon.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="name">Name :</label>
-                    <input type="text" name="name" class="form-control"  placeholder="Enter Your Name">
+                    <label for="name">Product Name :</label>
+                    <input type="text" name="name" class="form-control"  placeholder="Enter Product Name">
                   </div>
 					<div class="form-group">
-                    <label for="userimage">File input :</label>
+                    <label for="userimage"> Product Image:</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="userimage" multiple >
@@ -128,32 +133,27 @@ $cities=mysqli_query($conn,"select * from cities");
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="phone">Phone :</label>
-                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Number" name="phone">
+                    <label for="price">Product Price:</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="price">
+                  </div>
+                  <div class="form-group">
+                    <label for="qty">Product Quantity:</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Quantity" name="qty">
                   </div>
 					 <div class="form-group">
-                    <label for="city">City :</label>
-                    <select name="city" id="" class="form-control">
+                    <label for="category">Product Category:</label>
+                    <select name="category" id="" class="form-control">
 			<?php
-				while($cityrow=mysqli_fetch_assoc($cities))
+				while($categoryrow=mysqli_fetch_assoc($categories))
 				{
 					?>
-				<option  selected='selected' value="<?=$cityrow['Name']?>"><?=$cityrow["Name"]?></option>
+				<option  selected='selected' value="<?=$categoryrow['cat_name']?>"><?=$categoryrow["cat_name"]?></option>
 				<?php
 				}
 			?>
 		</select>
                   </div>
-                  
-                  <div class="form-group">
-                    <label for="gender">Gender :</label><br>
-		<input type="radio" name="gender" value="male">male<br>
-		<input type="radio" name="gender" value="female" >female
-                  </div>
-                </div>
-                <!-- /.card-body -->
-
-                 <center> <button type="submit" class="btn btn-info " name="register">Register</button></center>
+  <center> <button type="submit" class="btn btn-info " name="Addproduct"> Add Product</button></center>
                
               </form>
 

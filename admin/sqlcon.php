@@ -55,26 +55,28 @@ if(isset($_POST["editcat"])){
 	
 
 }
-//--------------------------------//////////
-if(isset($_POST["register"])){
-	$Name=$_POST["name"];
+
+
+//-------Product data---------//
+if(isset($_POST["Addproduct"])){
+	$product_name=$_POST["name"];
 	$ext=explode(".",$_FILES["userimage"]["name"]);
 	$filename="img/".md5(date('Y_m_d').rand().time()).".".$ext[1];
 	move_uploaded_file($_FILES["userimage"]["tmp_name"],$filename);
 
-	$Phone=$_POST["phone"];
-	$City=$_POST["city"];
-	$Gender=$_POST["gender"];
+	$product_price=$_POST["price"];
+	$product_qty=$_POST["qty"];
+	$product_category=$_POST["category"];
 	//file handling
 	
-	$query="INSERT INTO `students`( `Name`,`Files`, `Phone`, `City`, `Gender`) VALUES ('$Name','$filename', '$Phone','$City','$Gender')";
+	$query="INSERT INTO `tbl_product`( `product_name`, `product_image`, `product_price`, `product_qty`, `product_category`) VALUES ('$product_name','$filename', '$product_price','$product_qty','$product_category')";
 	$result=mysqli_query($conn,$query);
 	if($result)
 	{
 		//echo 'Thank You';
 		$_SESSION['status'] ="Registered Successfull";
 		$_SESSION['status_code'] = "success";
-		echo '<script>window.location.href="fetch.php"</script>';
+		echo '<script>window.location.href="productfetch.php"</script>';
 	}
 	else{
 		$_SESSION['status'] ="Data Not Registered";

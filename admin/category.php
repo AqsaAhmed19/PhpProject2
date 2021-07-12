@@ -4,7 +4,7 @@
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
-$dbname="shopping_cart";
+$dbname="php_shopping_cart";
 $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
 
 ?>
