@@ -4,7 +4,7 @@
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
-$dbname="php_shopping_cart";
+$dbname="shopping_cart";
 $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
 
 ?>
@@ -48,7 +48,7 @@ $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
                 <div class="card-body">
                   <div class="form-group">
                     <label for="catname"> Category Name :</label>
-                    <input type="text" name="catname" class="form-control"  placeholder="Enter Category Name">
+                    <input type="text" name="catname" class="form-control" required  placeholder="Enter Category Name">
                   </div>
 					
                  <center> <button type="Add Category" class="btn btn-info " name="addcategory">Add Category</button></center>

@@ -4,7 +4,7 @@
 $host ="localhost";
 $hostuser="root";
 $hostpassword="";
-$dbname="php_shopping_cart";
+$dbname="shopping_cart";
 $conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
 $cities=mysqli_query($conn,"select * from tbl_category");
 ?>
