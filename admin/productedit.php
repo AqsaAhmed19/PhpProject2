@@ -1,11 +1,6 @@
 <?php include('header.php');?>
 
-<?php
-		$host="localhost";
-		$hostuser="root";
-		$hostpassword="";
-		$dbname="test";
-		$con=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+  <?php
 	    $Id=$_GET["editid"];
 	$result=mysqli_query($con,"select * from students where Id=$Id");
 	if($result->num_rows>0)

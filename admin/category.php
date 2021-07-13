@@ -1,13 +1,5 @@
 <?php include('config.php');?>
 <?php include('header.php');?>
-<?php
-$host ="localhost";
-$hostuser="root";
-$hostpassword="";
-$dbname="php_shopping_cart";
-$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-
-?>
 
     <!-- Content Header (Page header) -->
     <section class="content-header">

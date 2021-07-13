@@ -2,11 +2,7 @@
 <?php include('header.php');?>
 
 <?php
-		$host="localhost";
-		$hostuser="root";
-		$hostpassword="";
-		$dbname="php_shopping_cart";
-		$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
+
 	  $cat_id=$_GET["cateditid"];
 	  $result=mysqli_query($conn,"select * from tbl_category where cat_id=$cat_id");
 	if($result->num_rows>0)
