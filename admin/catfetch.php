@@ -24,7 +24,7 @@
 					
 		<?php
 
-		$result=mysqli_query($conn,"select *from tbl_category");
+		$result=mysqli_query($conn,"select * from tbl_category");
 		if($result->num_rows>0){
 			while($row=mysqli_fetch_assoc($result))
 			{
@@ -82,13 +82,6 @@
       </div><!-- /.container-fluid -->
     </section>
 <?php include('footer.php');?>
-<?php
-$host ="localhost";
-$hostuser="root";
-$hostpassword="";
-$dbname="php_shopping_cart";
-$conn=mysqli_connect($host,$hostuser,$hostpassword,$dbname);
-?>
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
